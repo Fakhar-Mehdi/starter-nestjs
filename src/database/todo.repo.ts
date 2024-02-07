@@ -45,9 +45,9 @@ export class TodoRepo {
       throw new BadRequestException('Invalid Id Format');
 
     const task = await todoModel.findById(id).select('-__v');
-    console.log('task.userId', task.userId, 'userId', userId);
+    // console.log('task.userId', task.userId, 'userId', userId);
 
-    if (task && task.userId === userId) return task;
+    if (task && task.userId.toString() === userId.toString()) return task;
     else {
       if (task)
         throw new UnauthorizedException("You're Unautorized to view this task");
